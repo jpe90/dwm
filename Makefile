@@ -26,9 +26,12 @@ dwm: ${OBJ}
 	${CC} -o $@ ${OBJ} ${LDFLAGS}
 
 clean: 
-	rm -f config.h dwm ${OBJ} dwm-${VERSION}.tar.gz
+	rm -f dwm ${OBJ} 
 
-dist: clean
+distclean: clean
+	rm -f config.h dwm-${VERSION}.tar.gz
+
+dist: distclean
 	mkdir -p dwm-${VERSION}
 	cp -R LICENSE Makefile README config.def.h config.mk\
 		dwm.1 drw.h util.h ${SRC} dwm.png transient.c dwm-${VERSION}
