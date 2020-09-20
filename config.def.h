@@ -65,6 +65,7 @@ static const char *volupcmd[] = { "amixer", "-D", "pulse", "sset", "Master", "5%
 static const char *voldowncmd[] = { "amixer", "-D", "pulse", "sset", "Master", "5%-", NULL };
 static const char *brupcmd[] = { "sudo", "xbacklight", "-inc", "10", NULL };
 static const char *brdowncmd[] = { "sudo", "xbacklight", "-dec", "10", NULL };
+static const char *screenshotcmd[] = { "flameshot", "gui", NULL };
 
 static Key keys[] = {
 	/* modifier                     key                        function        argument */
@@ -110,6 +111,7 @@ static Key keys[] = {
     { 0,                            XF86XK_AudioRaiseVolume,   spawn,          {.v = volupcmd } },
     { 0,                            XF86XK_MonBrightnessUp,    spawn,          {.v = brupcmd} },
     { 0,                            XF86XK_MonBrightnessDown,  spawn,          {.v = brdowncmd} },
+    { 0,                            XK_Print,                  spawn,          {.v = screenshotcmd} },
 };
 
 /* button definitions */
