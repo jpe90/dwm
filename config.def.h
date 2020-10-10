@@ -61,7 +61,10 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "tabbed", "-c", "-r", "2", "st", "-w", "", NULL };
+// normal dpi
 static const char *surfcmd[]  = { "tabbed", "surf", "-e", NULL };
+// high dpi
+//static const char *surfcmd[]  = { "tabbed", "surf", "-z", "2.5", "-e", NULL };
 static const char *mutecmd[] = { "amixer", "sset", "Master", "toggle", NULL };
 static const char *volupcmd[] = { "amixer", "sset", "Master", "5%+", NULL };
 static const char *voldowncmd[] = { "amixer", "-D", "pulse", "sset", "Master", "5%-", NULL };
