@@ -2,24 +2,29 @@
 #include <X11/XF86keysym.h>
 
 /* appearance */
-static const unsigned int borderpx  = 2;        /* border pixel of windows */
+static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const Gap default_gap        = {.isgap = 1, .realgap = 10, .gappx = 10};
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-//static const char *fonts[]          = { "JetBrainsMono Nerd Font Mono:size=10" };
-//static const char dmenufont[]       = "JetBrainsMono Nerd Font Mono:size=10";
-static const char *fonts[]          = { "GohuFont Nerd Font Mono:size=10" };
-static const char dmenufont[]       = "GohuFont Nerd Font Mono:size=10";
-static const char col_gray1[]       = "#222222";
-static const char col_gray2[]       = "#444444";
-static const char col_gray3[]       = "#bbbbbb";
-static const char col_gray4[]       = "#eeeeee";
-static const char col_cyan[]        = "#005577";
+static const char *fonts[]          = { "monospace:size=10" };
+static const char dmenufont[]       = "monospace:size=10";
+/* static const char col_gray1[]       = "#222222"; */
+/* static const char col_gray2[]       = "#444444"; */
+/* static const char col_gray3[]       = "#bbbbbb"; */
+/* static const char col_gray4[]       = "#eeeeee"; */
+/* static const char col_cyan[]        = "#005577"; */
+
+static const char col_gray1[]       = "#282828";
+static const char col_gray2[]       = "#504945";
+static const char col_gray3[]       = "#bdae93";
+static const char col_gray4[]       = "#ebdbb2";
+static const char col_cyan[]        = "#458588";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
 	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
+  /* [SchemeSel]  = { col_gray4, col_gray2,  col_gray1  }, */
 };
 
 /* tagging */
@@ -62,23 +67,20 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
-static const char *termcmd[]  = { "tabbed", "-c", "-r", "2", "st", "-w", "", NULL };
-// normal dpi
+static const char *termcmd[]  = { "kitty", NULL };
 static const char *surfcmd[]  = { "tabbed", "surf", "-e", NULL };
-// high dpi
-//static const char *surfcmd[]  = { "tabbed", "surf", "-z", "2.5", "-e", NULL };
 static const char *mutecmd[] = { "amixer", "sset", "Master", "toggle", NULL };
 static const char *volupcmd[] = { "amixer", "sset", "Master", "5%+", NULL };
 static const char *voldowncmd[] = { "amixer", "-D", "pulse", "sset", "Master", "5%-", NULL };
 static const char *brupcmd[] = { "sudo", "xbacklight", "-inc", "10", NULL };
 static const char *brdowncmd[] = { "sudo", "xbacklight", "-dec", "10", NULL };
-static const char *screenshotcmd[] = { "flameshot", "gui", NULL };
+static const char *screenshotcmd[] = { "scrot", NULL };
 
 static Key keys[] = {
 	/* modifier                     key                        function        argument */
 	{ MODKEY,                       XK_p,                      spawn,          {.v = dmenucmd } },
-	{ MODKEY,                       XK_Return,                 spawn,          {.v = termcmd } },
-	{ MODKEY,                       XK_g,                 	   spawn,          {.v = surfcmd } },
+	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
+	/* { MODKEY,                       XK_g,                 	   spawn,          {.v = surfcmd } }, */
 	{ MODKEY,                       XK_b,                      togglebar,      {0} },
 	{ MODKEY,                       XK_j,                      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,                      focusstack,     {.i = -1 } },
@@ -86,9 +88,8 @@ static Key keys[] = {
 	{ MODKEY,                       XK_d,                      incnmaster,     {.i = -1 } },
 	{ MODKEY,                       XK_h,                      setmfact,       {.f = -0.05} },
 	{ MODKEY,                       XK_l,                      setmfact,       {.f = +0.05} },
-	{ MODKEY|ShiftMask,             XK_Return,                 zoom,           {0} },
+	{ MODKEY,                       XK_Return, zoom,           {0} },
 	{ MODKEY,                       XK_Tab,                    view,           {0} },
-	{ MODKEY|ShiftMask,             XK_q,                      killclient,     {0} },
 	{ MODKEY,                       XK_t,                      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_f,                      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,                      setlayout,      {.v = &layouts[2]} },
@@ -113,7 +114,8 @@ static Key keys[] = {
 	TAGKEYS(                        XK_7,                                      6)
 	TAGKEYS(                        XK_8,                                      7)
 	TAGKEYS(                        XK_9,                                      8)
-	{ MODKEY|ShiftMask,             XK_Tab,                    quit,           {0} },
+	{ MODKEY|ShiftMask,             XK_c,                      killclient,     {0} },
+	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 	{ 0,                            XF86XK_AudioMute,          spawn,          {.v = mutecmd } },
     { 0,                            XF86XK_AudioLowerVolume,   spawn,          {.v = voldowncmd } },
     { 0,                            XF86XK_AudioRaiseVolume,   spawn,          {.v = volupcmd } },

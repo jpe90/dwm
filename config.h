@@ -14,23 +14,17 @@ static const char dmenufont[]       = "monospace:size=10";
 /* static const char col_gray3[]       = "#bbbbbb"; */
 /* static const char col_gray4[]       = "#eeeeee"; */
 /* static const char col_cyan[]        = "#005577"; */
-/* static const char *colors[][3]      = { */
-/* 	/1*               fg         bg         border   *1/ */
-/* 	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 }, */
-/* 	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  }, */
-/* }; */
-/* gruvbox */
-static const char col_fg01[]    = "#EBDBB2";
-static const char col_bg01[]    = "#1A1A1A";
-static const char col_br01[]    = "#3F3F3F";
-static const char col_fg02[]    = "#83A598";
-static const char col_bg02[]    = "#313131";
-static const char col_br02[]    = "#7F7F7F";
 
-static const char *colors[][3]  = {
-    /*               fg        bg       border   */
-	[SchemeNorm] = { col_fg01, col_bg01, col_br01 },
-	[SchemeSel]  = { col_fg02, col_bg02, col_br02 },
+static const char col_gray1[]       = "#282828";
+static const char col_gray2[]       = "#504945";
+static const char col_gray3[]       = "#bdae93";
+static const char col_gray4[]       = "#ebdbb2";
+static const char col_cyan[]        = "#458588";
+static const char *colors[][3]      = {
+	/*               fg         bg         border   */
+	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
+	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
+  /* [SchemeSel]  = { col_gray4, col_gray2,  col_gray1  }, */
 };
 
 /* tagging */
@@ -94,7 +88,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_d,                      incnmaster,     {.i = -1 } },
 	{ MODKEY,                       XK_h,                      setmfact,       {.f = -0.05} },
 	{ MODKEY,                       XK_l,                      setmfact,       {.f = +0.05} },
-	{ MODKEY|ShiftMask,             XK_Return,                 zoom,           {0} },
+	{ MODKEY,                       XK_Return, zoom,           {0} },
 	{ MODKEY,                       XK_Tab,                    view,           {0} },
 	{ MODKEY,                       XK_t,                      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_f,                      setlayout,      {.v = &layouts[1]} },
