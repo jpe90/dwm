@@ -67,20 +67,18 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
-static const char *termcmd[]  = { "kitty", NULL };
-static const char *surfcmd[]  = { "tabbed", "surf", "-e", NULL };
+static const char *termcmd[]  = { "st", NULL };
 static const char *mutecmd[] = { "amixer", "sset", "Master", "toggle", NULL };
-static const char *volupcmd[] = { "amixer", "sset", "Master", "5%+", NULL };
-static const char *voldowncmd[] = { "amixer", "-D", "pulse", "sset", "Master", "5%-", NULL };
-static const char *brupcmd[] = { "sudo", "xbacklight", "-inc", "10", NULL };
-static const char *brdowncmd[] = { "sudo", "xbacklight", "-dec", "10", NULL };
+static const char *volupcmd[] = { "pactl", "--set-sink-volume", "0", "5%+", NULL };
+static const char *voldowncmd[] = { "pactl", "--set-sink-volume", "0", "5%-", NULL };
+static const char *brupcmd[] = { "light", "-A", "10", NULL };
+static const char *brdowncmd[] = { "light", "-U", "10", NULL };
 static const char *screenshotcmd[] = { "scrot", NULL };
 
 static Key keys[] = {
 	/* modifier                     key                        function        argument */
 	{ MODKEY,                       XK_p,                      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
-	/* { MODKEY,                       XK_g,                 	   spawn,          {.v = surfcmd } }, */
 	{ MODKEY,                       XK_b,                      togglebar,      {0} },
 	{ MODKEY,                       XK_j,                      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,                      focusstack,     {.i = -1 } },
