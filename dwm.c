@@ -1534,7 +1534,7 @@ setgaps(const Arg *arg)
 			break;
 		default:
 			p->realgap += arg->i;
-			p->isgap = 1;
+			p->isgap = 0;
 	}
 	p->realgap = MAX(p->realgap, 0);
 	p->gappx = p->realgap * p->isgap;
