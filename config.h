@@ -69,10 +69,12 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "alacritty", NULL };
 static const char *mutecmd[] = { "amixer", "sset", "Master", "toggle", NULL };
-static const char *volupcmd[] = { "pactl", "set-sink-volume", "0", "+5%", NULL };
-static const char *voldowncmd[] = { "pactl", "set-sink-volume", "0", "-5%", NULL };
-static const char *brupcmd[] = { "sudo", "xbacklight", "-inc", "10", NULL };
-static const char *brdowncmd[] = { "sudo", "xbacklight", "-dec", "10", NULL };
+static const char *volupcmd[] = { "pactl", "--set-sink-volume", "0", "+5%", NULL };
+static const char *voldowncmd[] = { "pactl", "--set-sink-volume", "0", "-5%", NULL };
+// static const char *brupcmd[] = { "sudo", "xbacklight", "-inc", "10", NULL };
+// static const char *brdowncmd[] = { "sudo", "xbacklight", "-dec", "10", NULL };
+static const char *brupcmd[] = { "light", "-A", "5", "NULL" };
+static const char *brdowncmd[] = { "light", "-U", "5", "NULL" };
 static const char *screenshotcmd[] = { "scrot", NULL };
 
 static Key keys[] = {

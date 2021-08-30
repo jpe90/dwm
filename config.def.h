@@ -75,6 +75,7 @@ static const char *voldowncmd[] = { "pactl", "--set-sink-volume", "0", "-5%", NU
 // static const char *brdowncmd[] = { "sudo", "xbacklight", "-dec", "10", NULL };
 static const char *brupcmd[] = { "light", "-A", "5", "NULL" };
 static const char *brdowncmd[] = { "light", "-U", "5", "NULL" };
+static const char *screenshotcmd[] = { "scrot", NULL };
 
 static Key keys[] = {
 	/* modifier                     key                        function        argument */
